@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <ImageView
+        android:id="@+id/img_detail"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/shopee" />
+
+    <TextView
+        android:id="@+id/name_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên sản phẩm"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/price_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá bán"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="Chi tiết sản phẩm"
+        android:textColor="@color/black"
+        android:textFontWeight="@android:integer/status_bar_notification_info_maxnum"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Mô tả"
+                android:textColor="#7F7F7F"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/description_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="435"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Thương hiệu"
+                android:textColor="#7F7F7F"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="DELL"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Bảo hành"
+                android:textColor="#7F7F7F"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="6 tháng"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Địa chỉ"
+                android:textColor="#7F7F7F"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Biên Hòa Đồng Nai"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/teal_200"
+            android:src="@drawable/comment" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/teal_200"
+            android:src="@drawable/cart_white"
+            android:padding="8dp" />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:text="Mua ngay"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:background="#FA3C00"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
