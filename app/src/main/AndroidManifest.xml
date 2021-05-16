@@ -12,15 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shokke_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
