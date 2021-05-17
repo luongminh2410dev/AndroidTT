@@ -49,4 +49,13 @@ public interface ApiService {
     @GET("product/filter")
     Call<Value> convertValueSearch(@Query("name") String name);
 
+    /**
+     * Trả về 1 sản phẩm khi biết mã sản phẩm
+     * @param _id
+     * @return
+     */
+    //https://servernodettandroid.herokuapp.com/product/search?_id=609bd406b68b050015ba4a19
+    @GET("product/search")
+    Call<Value> convertValueById(@Query("_id") String _id);
+
 }

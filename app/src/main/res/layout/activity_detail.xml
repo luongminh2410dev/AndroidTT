@@ -135,11 +135,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:text="Địa chỉ"
+                android:text="Tài khoản"
                 android:textColor="#7F7F7F"
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tv_account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -168,6 +169,7 @@
             android:src="@drawable/comment" />
 
         <ImageButton
+            android:id="@+id/btn_add_to_cart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
