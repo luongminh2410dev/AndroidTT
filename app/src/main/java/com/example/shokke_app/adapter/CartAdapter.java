@@ -28,25 +28,10 @@ public class CartAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Cart> carts;
-    private float priceCart = 0;
 
-    public CartAdapter(Context context, ArrayList<Cart> carts, float priceCart) {
+    public CartAdapter(Context context, ArrayList<Cart> carts) {
         this.context = context;
         this.carts = carts;
-        this.priceCart = priceCart;
-    }
-
-//    public CartAdapter(Context context, ArrayList<Cart> carts) {
-//        this.context = context;
-//        this.carts = carts;
-//    }
-
-    public float getPriceCart() {
-        return priceCart;
-    }
-
-    public void setPriceCart(float priceCart) {
-        this.priceCart = priceCart;
     }
 
     @Override
@@ -90,6 +75,12 @@ public class CartAdapter extends BaseAdapter {
                 }
                 tv_value.setText(String.valueOf(value));
                 MainActivity.cartDatabase.Update(value,carts.get(position).getId());
+
+                for(int i= 0 ;i<MainActivity.carts.size();i++){
+                    if(carts.get(i).getIdProduct() == carts.get(position).getIdProduct()){
+                        MainActivity.carts.get(i).setCount(value);
+                    }
+                }
             }
         });
 
@@ -100,9 +91,16 @@ public class CartAdapter extends BaseAdapter {
                 value ++;
                 tv_value.setText(String.valueOf(value));
                 MainActivity.cartDatabase.Update(value,carts.get(position).getId());
+
+                for(int i= 0 ;i<MainActivity.carts.size();i++){
+                    if(carts.get(i).getIdProduct() == carts.get(position).getIdProduct()){
+                        MainActivity.carts.get(i).setCount(value);
+                    }
+                }
             }
         });
         tv_value.setText(String.valueOf(carts.get(position).getCount()));
+
         ApiService.apiService.convertValueById(carts.get(position).getIdProduct()).enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
@@ -111,9 +109,8 @@ public class CartAdapter extends BaseAdapter {
 
                 Picasso.get().load(product.getImg()).into(img_product_cart);
                 name_cart.setText(product.getName());
-                price_cart.setText(String.valueOf(product.getPrice())+" đồng");
+                price_cart.setText(String.valueOf((int) product.getPrice())+" đồng");
 
-                priceCart += carts.get(position).getCount() * product.getPrice();
             }
 
             @Override

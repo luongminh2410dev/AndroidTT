@@ -7,13 +7,15 @@ public class Cart implements Serializable {
     private String username;
     private String idProduct;
     private int count;
+    private int price;
     private String timeCreate;
 
-    public Cart(int id, String username, String idProduct, int count, String timeCreate) {
+    public Cart(int id, String username, String idProduct, int count, int price, String timeCreate) {
         this.id = id;
         this.username = username;
         this.idProduct = idProduct;
         this.count = count;
+        this.price = price;
         this.timeCreate = timeCreate;
     }
 
@@ -47,6 +49,14 @@ public class Cart implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getTimeCreate() {

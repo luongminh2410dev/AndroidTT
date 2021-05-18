@@ -58,4 +58,8 @@ public interface ApiService {
     @GET("product/search")
     Call<Value> convertValueById(@Query("_id") String _id);
 
+    //https://servernodettandroid.herokuapp.com/product/sortout/?sortOut=1
+    @GET("product/sortout")
+    Call<Value> convertValueBySortout(@Query("sortOut") int sortOut);
+
 }

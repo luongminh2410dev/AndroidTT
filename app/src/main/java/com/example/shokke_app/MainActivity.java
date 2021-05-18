@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -31,9 +33,13 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private ArrayList<Product> products;
+
     private GridView grid_product;
     private EditText edt_search;
     private ImageView img_search, img_cart;
+    private Spinner spinner;
+    private ArrayList<String> list;
+    private ArrayAdapter<String> adapter;
 
     public static CartDatabase cartDatabase;    //database
     public static String userName;  //Tên tài khoản
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getData();
         getInit();
         CallApi();
         setEvent();
@@ -58,13 +65,24 @@ public class MainActivity extends AppCompatActivity {
         img_search = (ImageView) this.findViewById(R.id.img_search);
         img_cart = (ImageView) this.findViewById(R.id.img_cart);
         grid_product = findViewById(R.id.grid_product);
+        spinner = findViewById(R.id.spn_product);
+        list = new ArrayList<>();
+        list.add("Laptop");
+        list.add("Điện thoại");
+        list.add("Linh kiện máy tính");
+        list.add("Linh kiện điện thoại");
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         carts = new ArrayList<>();
 
 
         //Khởi tạo database
         cartDatabase = new CartDatabase(this, "Cart.sqlite", null, 1);
         //Tạo table
-        cartDatabase.QueryData("CREATE TABLE IF NOT EXISTS Cart(id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(200),idProduct VARCHAR(200),count INTEGER,timeCreate VARCHAR(200))");
+        cartDatabase.QueryData("CREATE TABLE IF NOT EXISTS Cart(id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(200),idProduct VARCHAR(200),count INTEGER,price INTEGER ,timeCreate VARCHAR(200))");
+//        cartDatabase.QueryData("DELETE FROM Cart");
     }
 
     public void setEvent() {
@@ -90,15 +108,55 @@ public class MainActivity extends AppCompatActivity {
                     String userName = dataCart.getString(1);
                     String idProduct = dataCart.getString(2);
                     int count = dataCart.getInt(3);
-                    String timeCreate = dataCart.getString(4);
-                    carts.add(new Cart(id, userName, idProduct, count, timeCreate));
+                    int price = dataCart.getInt(4);
+                    String timeCreate = dataCart.getString(5);
+                    carts.add(new Cart(id, userName, idProduct, count,price, timeCreate));
                 }
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
-    }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterProduct(position+1);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    public void filterProduct(int position){
+        products.clear();
+        ApiService.apiService.convertValueBySortout(position).enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                Value value = response.body();
+                if(value.isSuccess()){
+                    products = value.getProducts();
+                    productAdapter = new ProductAdapter(MainActivity.this, products);
+                    grid_product.setAdapter(productAdapter);
+                    grid_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Product product = products.get(position);
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra("PRODUCT", product);
+                            intent.putExtra("USERNAME",userName);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
     public void getData() {
         Intent intent = getIntent();
         userName = intent.getStringExtra("USERNAME");

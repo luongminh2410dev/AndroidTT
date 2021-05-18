@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shokke_app.adapter.CartAdapter;
 import com.example.shokke_app.api.ApiService;
@@ -33,7 +34,7 @@ public class CartActivity extends AppCompatActivity {
     private ListView lsv_cart;
     private CartAdapter cartAdapter;
     private ArrayList<Cart> carts;
-    private float priceCart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +56,13 @@ public class CartActivity extends AppCompatActivity {
         lsv_cart = findViewById(R.id.lsv_cart);
     }
     public void setEvent(){
-        price_cart.setText(String.valueOf(cartAdapter.getPriceCart()) + "đồng");
+        if(carts.size() > 0){
+            price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
+        }
         lsv_cart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
             }
         });
     }
@@ -67,8 +70,7 @@ public class CartActivity extends AppCompatActivity {
         carts = MainActivity.carts;
         if(carts.size() != 0){
             message_cart.setVisibility(View.INVISIBLE);
-            cartAdapter = new CartAdapter(this,carts,priceCart);
-            Log.d("result", String.valueOf(cartAdapter.getPriceCart()));
+            cartAdapter = new CartAdapter(this,carts);
             lsv_cart.setAdapter(cartAdapter);
             cartAdapter.notifyDataSetChanged();
         }else {
@@ -87,4 +89,13 @@ public class CartActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public float getPriceCart(ArrayList<Cart> carts){
+        float price = 0;
+        for(int i=0;i<carts.size();i++){
+            price += carts.get(i).getPrice()*carts.get(i).getCount();
+        }
+        return price;
+    }
+
+
 }
