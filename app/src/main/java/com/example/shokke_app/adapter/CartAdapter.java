@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,8 +18,6 @@ import com.example.shokke_app.model.Product;
 import com.example.shokke_app.model.Value;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -66,8 +63,8 @@ public class CartAdapter extends BaseAdapter {
         TextView name_cart = convertView.findViewById(R.id.name_product_cart);
         TextView price_cart = convertView.findViewById(R.id.price_product_cart);
         TextView tv_value = convertView.findViewById(R.id.tv_value);
-        ImageButton btn_minus = convertView.findViewById(R.id.btn_minus);
-        ImageButton btn_plus =  convertView.findViewById(R.id.btn_plus);
+        Button btn_minus = convertView.findViewById(R.id.btn_minus);
+        Button btn_plus = convertView.findViewById(R.id.btn_plus);
 
         btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,10 +109,8 @@ public class CartAdapter extends BaseAdapter {
 
                 Picasso.get().load(product.getImg()).into(img_product_cart);
                 name_cart.setText(product.getName());
-//                price_cart.setText(String.valueOf((int) product.getPrice())+" đồng");
-                NumberFormat formatter = new DecimalFormat("#,###");
-                String formattedNumber = formatter.format(product.getPrice());
-                price_cart.setText( "₫ " + formattedNumber);
+                price_cart.setText(String.valueOf((int) product.getPrice())+" đồng");
+
             }
 
             @Override
