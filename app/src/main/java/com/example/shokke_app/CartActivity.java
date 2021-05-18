@@ -1,26 +1,39 @@
 package com.example.shokke_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.shokke_app.adapter.CartAdapter;
+import com.example.shokke_app.api.ApiService;
 import com.example.shokke_app.model.Cart;
+import com.example.shokke_app.model.Product;
+import com.example.shokke_app.model.Value;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartActivity extends AppCompatActivity {
 
     private TextView message_cart,tv_total,price_cart;
-    private Button btn_payment,btn_continue;
+    private Button btn_payment;
     private ListView lsv_cart;
     private CartAdapter cartAdapter;
     private ArrayList<Cart> carts;
+    private float priceCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +45,21 @@ public class CartActivity extends AppCompatActivity {
         setEvent();
     }
     public void getInit(){
-        getSupportActionBar().setTitle("Giỏ hàng");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Giỏ hàng");
 
         message_cart = (TextView)findViewById(R.id.message_cart);
         tv_total=(TextView)findViewById(R.id.tv_total);
         price_cart=(TextView)findViewById(R.id.price_cart);
         btn_payment = (Button) findViewById(R.id.btn_payment);
-        btn_continue = (Button) findViewById(R.id.btn_continue);
         lsv_cart = findViewById(R.id.lsv_cart);
     }
     public void setEvent(){
-        btn_continue.setOnClickListener(new View.OnClickListener() {
+        price_cart.setText(String.valueOf(cartAdapter.getPriceCart()) + "đồng");
+        lsv_cart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CartActivity.this,MainActivity.class));
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             }
         });
     }
@@ -54,14 +67,24 @@ public class CartActivity extends AppCompatActivity {
         carts = MainActivity.carts;
         if(carts.size() != 0){
             message_cart.setVisibility(View.INVISIBLE);
-            cartAdapter = new CartAdapter(this,carts);
+            cartAdapter = new CartAdapter(this,carts,priceCart);
+            Log.d("result", String.valueOf(cartAdapter.getPriceCart()));
             lsv_cart.setAdapter(cartAdapter);
+            cartAdapter.notifyDataSetChanged();
         }else {
             message_cart.setVisibility(View.VISIBLE);
             tv_total.setVisibility(View.INVISIBLE);
             price_cart.setVisibility(View.INVISIBLE);
             btn_payment.setVisibility(View.INVISIBLE);
-            btn_continue.setVisibility(View.INVISIBLE);
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

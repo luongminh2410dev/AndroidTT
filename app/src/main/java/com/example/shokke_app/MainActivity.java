@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText edt_search;
     private ImageView img_search, img_cart;
 
-    public static CartDatabase cartDatabase;
+    public static CartDatabase cartDatabase;    //database
     public static String userName;  //Tên tài khoản
 
-    public static ArrayList<Cart> carts;
+    public static ArrayList<Cart> carts; //danh sách giỏ hàng
 
 
     @Override
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getData();
         getInit();
         CallApi();
         setEvent();
     }
+
 
     public void getInit() {
         getSupportActionBar().hide();
@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Lấy ra dữ liệu khi biết userName
-                Cursor dataCart = cartDatabase.GetData("SELECT * FROM Cart WHERE username == '" + userName + "'");
+                Cursor dataCart = cartDatabase.GetData("SELECT * FROM Cart WHERE username = '" + userName + "'");
+                carts.clear();
                 while (dataCart.moveToNext()) {
                     int id = dataCart.getInt(0);
                     String userName = dataCart.getString(1);
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             Product product = products.get(position);
                             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                             intent.putExtra("PRODUCT", product);
+                            intent.putExtra("USERNAME",userName);
                             startActivity(intent);
                         }
                     });

@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         // If checkbox is checked, save current account
         SharedPreferences preferences = getSharedPreferences(saveInfo, MODE_PRIVATE);
-        Boolean save                  = preferences.getBoolean("Save", false);
+        Boolean save = preferences.getBoolean("Save", false);
         if(save)
         {
             FirebaseUser currentUser = mAuth.getCurrentUser();

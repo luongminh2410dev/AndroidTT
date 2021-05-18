@@ -28,7 +28,11 @@ public class CartDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL("DELETE FROM Cart WHERE ID = "+id+"");
     }
-
+    //Cập nhật giỏ hàng khi thay đổi số lượng
+    public void Update(int count,int id){
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL("UPDATE Cart SET count = "+count+" WHERE id = "+id+"");
+    }
     //Truy vấn trả về kq
     public Cursor GetData(String sql){
         SQLiteDatabase database = getReadableDatabase();
