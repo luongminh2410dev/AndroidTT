@@ -67,10 +67,9 @@ public class MainActivity extends AppCompatActivity {
         grid_product = findViewById(R.id.grid_product);
         spinner = findViewById(R.id.spn_product);
         list = new ArrayList<>();
+        list.add("Tất cả sản phẩm");
         list.add("Laptop");
         list.add("Điện thoại");
-        list.add("Linh kiện máy tính");
-        list.add("Linh kiện điện thoại");
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                filterProduct(position+1);
+                filterProduct(position);
             }
 
             @Override
@@ -129,33 +128,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void filterProduct(int position){
-        products.clear();
-        ApiService.apiService.convertValueBySortout(position).enqueue(new Callback<Value>() {
-            @Override
-            public void onResponse(Call<Value> call, Response<Value> response) {
-                Value value = response.body();
-                if(value.isSuccess()){
-                    products = value.getProducts();
-                    productAdapter = new ProductAdapter(MainActivity.this, products);
-                    grid_product.setAdapter(productAdapter);
-                    grid_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Product product = products.get(position);
-                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                            intent.putExtra("PRODUCT", product);
-                            intent.putExtra("USERNAME",userName);
-                            startActivity(intent);
-                        }
-                    });
+        if(position == 0)
+        {
+            CallApi();
+        }
+        if(position <= 2){
+            ApiService.apiService.convertValueBySortout(position).enqueue(new Callback<Value>() {
+                @Override
+                public void onResponse(Call<Value> call, Response<Value> response) {
+                    Value value = response.body();
+                    if(value.isSuccess()){
+                        products = value.getProducts();
+                        productAdapter = new ProductAdapter(MainActivity.this, products);
+                        grid_product.setAdapter(productAdapter);
+                        grid_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Product product = products.get(position);
+                                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                                intent.putExtra("PRODUCT", product);
+                                intent.putExtra("USERNAME",userName);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Value> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Value> call, Throwable t) {
+                }
+            });
+        }
 
-            }
-        });
     }
     public void getData() {
         Intent intent = getIntent();

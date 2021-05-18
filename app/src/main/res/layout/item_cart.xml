@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -49,15 +50,14 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_minus"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:text="-"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:gravity="center"
-                android:textSize="30sp" />
+                android:src="@drawable/minus"
+                android:scaleType="centerInside"
+                android:backgroundTint="@android:color/transparent"/>
 
             <TextView
                 android:id="@+id/tv_value"
@@ -70,14 +70,13 @@
                 android:gravity="center"
                 android:textSize="30sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_plus"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:text="+"
-                android:textSize="30sp" />
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/plus"
+                android:scaleType="centerInside"
+                android:backgroundTint="@android:color/transparent"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

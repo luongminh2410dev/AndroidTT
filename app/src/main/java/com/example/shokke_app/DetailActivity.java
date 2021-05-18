@@ -17,6 +17,8 @@ import com.example.shokke_app.model.Cart;
 import com.example.shokke_app.model.Product;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
@@ -55,7 +57,9 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.get().load(product.getImg()).into(img_detail);
         name_detail.setText(product.getName());
         price = (int) product.getPrice();
-        price_detail.setText(String.valueOf((int) product.getPrice()) + " đồng");
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(product.getPrice());
+        price_detail.setText( "₫ " + formattedNumber);
         description_detail.setText(String.valueOf(product.getDescription()));
         idProduct = product.get_id();
         userName = intent.getStringExtra("USERNAME");

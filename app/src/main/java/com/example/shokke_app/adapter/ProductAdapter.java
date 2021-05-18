@@ -13,6 +13,8 @@ import com.example.shokke_app.R;
 import com.example.shokke_app.model.Product;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter{
@@ -54,7 +56,9 @@ public class ProductAdapter extends BaseAdapter{
         TextView tv_price = convertView.findViewById(R.id.tv_price);
 
         int price = (int)products.get(position).getPrice();
-        tv_price.setText(String.valueOf(price) + " đồng");
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(price);
+        tv_price.setText("₫ " + String.valueOf(formattedNumber));
         ImageView img_product = convertView.findViewById(R.id.img_product);
         Picasso.get().load(products.get(position).getImg()).into(img_product);
         return convertView;

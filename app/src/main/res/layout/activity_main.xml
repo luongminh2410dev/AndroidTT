@@ -74,12 +74,19 @@
     <Spinner
         android:id="@+id/spn_product"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
     <GridView
         android:id="@+id/grid_product"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numColumns="2"></GridView>
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="8dp"
+        android:scrollbars="none"
+        android:background="#eeeeee"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"></GridView>
     <!--    <androidx.recyclerview.widget.RecyclerView-->
     <!--        android:id="@+id/rcv_product"-->
     <!--        android:layout_width="match_parent"-->
