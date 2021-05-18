@@ -60,6 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         NumberFormat formatter = new DecimalFormat("#,###");
         String formattedNumber = formatter.format(product.getPrice());
         price_detail.setText( "₫ " + formattedNumber);
+
         description_detail.setText(String.valueOf(product.getDescription()));
         idProduct = product.get_id();
         userName = intent.getStringExtra("USERNAME");

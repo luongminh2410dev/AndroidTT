@@ -62,4 +62,12 @@ public interface ApiService {
     @GET("product/sortout")
     Call<Value> convertValueBySortout(@Query("sortOut") int sortOut);
 
+    //https://servernodettandroid.herokuapp.com/bill?username=admin@gmail.com&id_product=60936c2ceb0f3e0015d26617&total=5&time=30/12/2021
+    @POST("bill")
+    Call<Void> getPost(@Query("username") String username,
+                       @Query("id_product") String id_product,
+                       @Query("total") int total,
+                       @Query("time") String time);
+
+
 }

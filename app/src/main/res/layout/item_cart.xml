@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:hint="Giá bán"
             android:padding="8dp"
-            android:textColor="@color/black"
+            android:textColor="#ed4d2d"
             android:textSize="16sp" />
         <LinearLayout
             android:layout_width="match_parent"

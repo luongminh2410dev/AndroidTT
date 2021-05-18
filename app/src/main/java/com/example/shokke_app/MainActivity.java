@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         cartDatabase = new CartDatabase(this, "Cart.sqlite", null, 1);
         //Tạo table
         cartDatabase.QueryData("CREATE TABLE IF NOT EXISTS Cart(id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(200),idProduct VARCHAR(200),count INTEGER,price INTEGER ,timeCreate VARCHAR(200))");
-//        cartDatabase.QueryData("DELETE FROM Cart");
+
     }
 
     public void setEvent() {
@@ -153,13 +153,11 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 }
-
                 @Override
                 public void onFailure(Call<Value> call, Throwable t) {
                 }
             });
         }
-
     }
     public void getData() {
         Intent intent = getIntent();

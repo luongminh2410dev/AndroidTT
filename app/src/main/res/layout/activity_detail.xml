@@ -95,6 +95,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tv_producer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -115,16 +116,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:text="Bảo hành"
+                android:text="Loại sản phẩm"
                 android:textColor="#7F7F7F"
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tv_loaisp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:text="6 tháng"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>

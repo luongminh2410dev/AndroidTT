@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,7 +22,11 @@ import com.example.shokke_app.model.Cart;
 import com.example.shokke_app.model.Product;
 import com.example.shokke_app.model.Value;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,12 +62,44 @@ public class CartActivity extends AppCompatActivity {
     }
     public void setEvent(){
         if(carts.size() > 0){
-            price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
+            NumberFormat formatter = new DecimalFormat("#,###");
+            String formattedNumber = formatter.format(getPriceCart(carts));
+            price_cart.setText( "₫ " + formattedNumber);
+//            price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
         }
+
         lsv_cart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
+                NumberFormat formatter = new DecimalFormat("#,###");
+                String formattedNumber = formatter.format(getPriceCart(carts));
+                price_cart.setText( "₫ " + formattedNumber);
+//                price_cart.setText(String.valueOf((int) getPriceCart(carts) + "đồng"));
+            }
+        });
+        btn_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date currentTime = Calendar.getInstance().getTime();
+                Cursor dataCart = MainActivity.cartDatabase.GetData("SELECT * FROM Cart WHERE username = '" + MainActivity.userName + "'");
+                while (dataCart.moveToNext()) {
+                    String userName = dataCart.getString(1);
+                    String idProduct = dataCart.getString(2);
+                    int count = dataCart.getInt(3);
+                    ApiService.apiService.getPost(userName,idProduct,count,currentTime.toString()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(CartActivity.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                            MainActivity.cartDatabase.QueryData("DELETE FROM Cart");
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(CartActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }
