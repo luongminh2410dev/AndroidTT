@@ -74,7 +74,7 @@ public class DetailActivity extends AppCompatActivity {
                 if(dataCartCheck.getCount() > 0 ){
                     Toast.makeText(DetailActivity.this, "Sản phẩm này đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
                 }else{
-                    MainActivity.cartDatabase.Insert(userName,idProduct,1,price,null);
+                    MainActivity.cartDatabase.Insert(userName,idProduct,1,price,"1");
                     Cursor dataCart = MainActivity.cartDatabase.GetData("SELECT * FROM Cart WHERE username == '"+userName+"' AND idProduct == '"+idProduct+"'");
                     while (dataCart.moveToNext()){
                         int id = dataCart.getInt(0);

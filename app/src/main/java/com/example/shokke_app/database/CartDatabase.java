@@ -24,9 +24,9 @@ public class CartDatabase extends SQLiteOpenHelper {
         return database.rawQuery(sql,null);
     }
     //Thêm vào giỏ hàng
-    public void Insert(String userName,String idProduct,int count,int price,String timeCreate){
+    public void Insert(String userName, String idProduct, int count, int price, String timeCreate){
         SQLiteDatabase database = getWritableDatabase();
-        database.execSQL("INSERT INTO Cart VALUES(null,'"+userName+"','"+idProduct+"',"+count+","+price+",'"+timeCreate+"')");
+        database.execSQL("INSERT INTO Cart (id, username, idProduct, count, price, timeCreate) VALUES(null,'"+userName+"','"+idProduct+"',"+count+","+price+",'"+timeCreate+"')");
     }
     //Xóa 1 bản ghi khi biết id
     public void Delete(int id){

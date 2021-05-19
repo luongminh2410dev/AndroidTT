@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         edt_search   = (EditText) this.findViewById(R.id.edt_search);
         img_search   = (ImageView) this.findViewById(R.id.img_search);
         img_cart     = (ImageView) this.findViewById(R.id.img_cart);
-        img_logout = (ImageView) this.findViewById(R.id.img_logout);
+        img_logout   = (ImageView) this.findViewById(R.id.img_logout);
         grid_product = findViewById(R.id.grid_product);
         grid_product.setExpanded(true);
         spinner      = findViewById(R.id.spn_product);
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         //Khởi tạo database
         cartDatabase = new CartDatabase(this, "Cart.sqlite", null, 1);
         //Tạo table
-        cartDatabase.QueryData("CREATE TABLE IF NOT EXISTS Cart(id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(200),idProduct VARCHAR(200),count INTEGER,price INTEGER ,timeCreate VARCHAR(200))");
-
+        cartDatabase.QueryData("CREATE TABLE IF NOT EXISTS Cart(id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(200), idProduct VARCHAR(200), count INTEGER, price INTEGER ,timeCreate VARCHAR(200))");
+//        cartDatabase.QueryData("DELETE FROM Cart");
     }
     public void setEvent() {
         img_search.setOnClickListener(new View.OnClickListener() {
