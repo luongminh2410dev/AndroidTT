@@ -108,5 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
+    //Thoát khỏi ứng dụng ngay lập tức
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        System.exit(0);
+        super.onBackPressed();
+    }
 }

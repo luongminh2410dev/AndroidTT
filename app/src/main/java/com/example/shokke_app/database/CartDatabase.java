@@ -18,6 +18,11 @@ public class CartDatabase extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);
     }
+    //Truy vấn trả về kq
+    public Cursor GetData(String sql){
+        SQLiteDatabase database = getReadableDatabase();
+        return database.rawQuery(sql,null);
+    }
     //Thêm vào giỏ hàng
     public void Insert(String userName,String idProduct,int count,int price,String timeCreate){
         SQLiteDatabase database = getWritableDatabase();
@@ -32,11 +37,6 @@ public class CartDatabase extends SQLiteOpenHelper {
     public void Update(int count,int id){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL("UPDATE Cart SET count = "+count+" WHERE id = "+id+"");
-    }
-    //Truy vấn trả về kq
-    public Cursor GetData(String sql){
-        SQLiteDatabase database = getReadableDatabase();
-        return database.rawQuery(sql,null);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {

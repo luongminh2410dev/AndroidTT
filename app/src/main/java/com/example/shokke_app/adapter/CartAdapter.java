@@ -78,12 +78,8 @@ public class CartAdapter extends BaseAdapter {
                 }
                 tv_value.setText(String.valueOf(value));
                 MainActivity.cartDatabase.Update(value,carts.get(position).getId());
-
-                for(int i= 0 ;i<MainActivity.carts.size();i++){
-                    if(carts.get(i).getIdProduct() == carts.get(position).getIdProduct()){
-                        MainActivity.carts.get(i).setCount(value);
-                    }
-                }
+                MainActivity.carts.get(position).setCount(value);
+                CartActivity.setPriceCart();
             }
         });
 
@@ -94,12 +90,9 @@ public class CartAdapter extends BaseAdapter {
                 value ++;
                 tv_value.setText(String.valueOf(value));
                 MainActivity.cartDatabase.Update(value,carts.get(position).getId());
+                MainActivity.carts.get(position).setCount(value);
+                CartActivity.setPriceCart();
 
-                for(int i= 0 ;i<MainActivity.carts.size();i++){
-                    if(carts.get(i).getIdProduct() == carts.get(position).getIdProduct()){
-                        MainActivity.carts.get(i).setCount(value);
-                    }
-                }
             }
         });
         tv_value.setText(String.valueOf(carts.get(position).getCount()));

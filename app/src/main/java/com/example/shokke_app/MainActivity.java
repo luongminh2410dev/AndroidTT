@@ -40,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
     private CustomGridView grid_product;
     private EditText edt_search;
-    private ImageView img_search, img_cart;
+    private ImageView img_search, img_cart,img_logout;
     private Spinner spinner;
     private ArrayList<String> list;
     private ArrayAdapter<String> adapter;
     public static CartDatabase cartDatabase;    //database
     public static String userName;  //Tên tài khoản
     public static ArrayList<Cart> carts; //danh sách giỏ hàng
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         edt_search   = (EditText) this.findViewById(R.id.edt_search);
         img_search   = (ImageView) this.findViewById(R.id.img_search);
         img_cart     = (ImageView) this.findViewById(R.id.img_cart);
+        img_logout = (ImageView) this.findViewById(R.id.img_logout);
         grid_product = findViewById(R.id.grid_product);
         grid_product.setExpanded(true);
         spinner      = findViewById(R.id.spn_product);
@@ -121,6 +124,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+        img_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
             }
         });
 //        DISABLE SCROLL OF GRIDVIEW
@@ -219,4 +228,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Thoát khỏi ứng dụng ngay lập tức
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        System.exit(0);
+        super.onBackPressed();
+    }
 }
