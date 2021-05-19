@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    tools:context=".MainActivity">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity"
     android:orientation="vertical">
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,7 +19,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="11">
+                android:weightSum="11"
+                android:layout_marginHorizontal="16dp">
                 <ImageView
                     android:id="@+id/img_search"
                     android:layout_width="0dp"
@@ -33,7 +28,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:scaleType="center"
-                    android:background="@drawable/bg_search"
+                    android:background="#eeeeee"
                     android:src="@drawable/search" />
                 <EditText
                     android:id="@+id/edt_search"
@@ -42,7 +37,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="8"
                     android:background="@drawable/bg_search"
-                    android:backgroundTint="#7F7F7F"
+                    android:backgroundTint="#eeeeee"
                     android:hint="Nhập tên sản phẩm"
                     android:lines="1"
                     android:maxLines="1"
@@ -71,55 +66,188 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
-
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/shopee" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="8dp"
-        android:text="Danh sách sản phẩm"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Lọc theo:"
-            android:textSize="16dp"
-            android:gravity="center"
-            android:layout_marginRight="16dp"/>
-        <Spinner
-            android:id="@+id/spn_product"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shopee" />
 
-    <com.example.shokke_app.model.CustomGridView
-        android:id="@+id/grid_product"
-        android:layout_width="match_parent"
-        android:layout_height="800dp"
-        android:background="#eeeeee"
-        android:horizontalSpacing="8dp"
-        android:numColumns="2"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="8dp"
-        android:scrollbars="none"
-        android:isScrollContainer="false"
-        android:verticalSpacing="8dp"></com.example.shokke_app.model.CustomGridView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="Danh sách sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Lọc theo:"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:layout_marginRight="16dp"/>
+                <Spinner
+                    android:id="@+id/spn_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <com.example.shokke_app.model.CustomGridView
+                android:id="@+id/grid_product"
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:background="#eeeeee"
+                android:horizontalSpacing="8dp"
+                android:numColumns="2"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="8dp"
+                android:scrollbars="none"
+                android:isScrollContainer="false"
+                android:verticalSpacing="8dp"></com.example.shokke_app.model.CustomGridView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
-</ScrollView>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:scrollbars="none"-->
+<!--    tools:context=".MainActivity">-->
+<!--<LinearLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolBar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:weightSum="11"-->
+<!--                android:layout_marginHorizontal="16dp">-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/img_search"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:scaleType="center"-->
+<!--                    android:background="@drawable/bg_search"-->
+<!--                    android:src="@drawable/search" />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/edt_search"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="8"-->
+<!--                    android:background="@drawable/bg_search"-->
+<!--                    android:backgroundTint="#EEEEEE"-->
+<!--                    android:hint="Nhập tên sản phẩm"-->
+<!--                    android:lines="1"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/img_cart"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:scaleType="center"-->
+<!--                    android:src="@drawable/cart" />-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/img_logout"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:scaleType="center"-->
+<!--                    android:src="@drawable/logout" />-->
+<!--            </LinearLayout>-->
+<!--        </androidx.appcompat.widget.Toolbar>-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/shopee" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:padding="8dp"-->
+<!--        android:text="Danh sách sản phẩm"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp" />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingHorizontal="16dp"-->
+<!--        android:gravity="center">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="Lọc theo:"-->
+<!--            android:textSize="16dp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginRight="16dp"/>-->
+<!--        <Spinner-->
+<!--            android:id="@+id/spn_product"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <com.example.shokke_app.model.CustomGridView-->
+<!--        android:id="@+id/grid_product"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="800dp"-->
+<!--        android:background="#eeeeee"-->
+<!--        android:horizontalSpacing="8dp"-->
+<!--        android:numColumns="2"-->
+<!--        android:paddingHorizontal="8dp"-->
+<!--        android:paddingVertical="8dp"-->
+<!--        android:scrollbars="none"-->
+<!--        android:isScrollContainer="false"-->
+<!--        android:verticalSpacing="8dp"></com.example.shokke_app.model.CustomGridView>-->
+<!--</LinearLayout>-->
+<!--</ScrollView>-->
